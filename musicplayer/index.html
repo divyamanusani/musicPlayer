@@ -7,43 +7,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="musicStyle.css">
     <title>music player</title>
-    <style>
-        .card {
-            border-top: 2px solid black;
-            border-bottom: 2px solid black;
-            border-left: 1px solid grey;
-            border-right: 1px solid grey;
-        }
-
-        .card-header {
-            color: white;
-            background-color: black;
-            text-align: center;
-            font-size: 2em;
-
-        }
-
-        #playlistNames {
-            width: 100%;
-            height: 45px;
-        }
-
-        .fa {
-
-            font-size: 24px;
-        }
-
-        img {
-            width: 100%;
-            height: 300px;
-        }
-
-        .input-group{
-            width:90%;
-            margin:auto;
-        }
-        
-    </style>
 </head>
 
 <body>
@@ -53,9 +16,9 @@
                 <div class="navbar-nav">
                     <form class="form-inline my-2 my-lg-0" onsubmit="getSongsSearch();return false;">
                         <span>
-                            <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
-                            <input class="form-control mr-sm-2" id="searchSong" type="search" placeholder="Search"
-                                aria-label="Search">
+                            <button class="btn btn-success my-2 my-sm-0" id="searchBtn" type="submit">Search</button>
+                            <input class="form-control mr-sm-2" id="searchSong" type="search"
+                                placeholder="Search SongName" aria-label="Search">
                         </span>
                     </form>
                 </div>
@@ -66,18 +29,32 @@
             </button>
             <div class="navbar-collapse collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
-                    <a href="#" class="nav-item nav-link active">Playlists</a>
-                    <a href="#" class="nav-item nav-link">Services</a>
-                    <a href="#" class="nav-item nav-link">About</a>
-                    <a href="#" class="nav-item nav-link">Contact</a>
+                    <a href="#" class="nav-item nav-link"><button class="btn btn-success"
+                            onclick="displayAllPlaylists()">Playlists</button></a>
+                    <a href="#" class="nav-item nav-link"><button class="btn btn-success"
+                            onclick="displayHome()">Home</button></a>
+
                 </div>
 
             </div>
         </div>
     </nav>
-    <audio id="player" controls>
-        <source type="audio/mp4" id="sourceAudio">
-    </audio>
+
+
+    <div class="row" id="playermusic">
+        <div class="col-sm-12">
+            <div class="card ml-3 mr-3">
+                <h4 class="card-header" id="hometitleheader">Sound Helix</h4>
+                <div class="card-body">
+                    <audio controls="" id="player" style="margin:auto">
+                        <source id="sourceAudio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+                            type="audio/mpeg">
+                    </audio>
+                    <p class="card-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="myModal" role="dialog" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -100,16 +77,22 @@
                     </div>
                 </div>
                 <div class="input-group flex-nowrap">
+                    <label>Enter the required playlist name in the text field.If a new name is entered , then new
+                        playlist will be created.</label>
+                </div><br>
+                <div class="input-group flex-nowrap">
                     <select name="playlistNames" id="playlistNames">
-                        <option value="0">Select existing playlist</option>
+                        <option value="0">List of Existing playlists</option>
+                        <option value="Playlist1">Playlist1</option>
+                        <option value="Musical">Musical</option>
                     </select>
                 </div><br>
-                    <div class="input-group flex-nowrap">
-                        <input type="text" class="form-control" id="newplaylistName" placeholder="Playlist Name">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">New Playlist Name</span>
-                        </div>
-                   
+                <div class="input-group flex-nowrap">
+                    <input type="text" class="form-control" id="newplaylistName" placeholder="Playlist Name">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Enter Playlist Name</span>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -120,8 +103,29 @@
         </div>
     </div>
     <div class="container-fluid clearfix" id="songsContainer">
+    </div>
+    <div class="container-fluid" id="playlistPage" style="display:none">
+        <div class="row">
+            <div class="col-sm-12" id="songDetails">
+                <div class="card">
+                    <h4 class="card-header" id="songtitleheader">Sound Helix</h4>
+                    <div class="card-body">
+                        <audio controls="" id="audioPlayer" style="margin:auto">
+                            <source id="audioPlayersrc"
+                                src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                        </audio>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-
+        <div id="displayPlaylists">
+            <div class="row">
+                <div class="col-5" id="songcolleft"></div>
+                <div class="col-5 offset-1" id="songcolright"></div>
+            </div>
+        </div>
     </div>
     <script src="player.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
