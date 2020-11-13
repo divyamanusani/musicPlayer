@@ -71,10 +71,10 @@ async function playPlayListSong(listIndex, songIndex) {
 }
 
 async function getSongsapi() {
-    let songs = await fetch("https://shazam.p.rapidapi.com/songs/list-artist-top-tracks?id=40008598&locale=en-US", {
+    let songs = await fetch("https://shazam.p.rapidapi.com/songs/list-artist-top-tracks?id=xxxxxxxx&locale=en-US", {
         "method": "GET",
         "headers": {
-            "x-rapidapi-key": "c204cc8052msh96dac8f09970455p1cab12jsneb13a550fb65",
+            "x-rapidapi-key": "xxxxxxxxxxxxxxxxx",
             "x-rapidapi-host": "shazam.p.rapidapi.com"
         }
     });
@@ -160,7 +160,7 @@ async function getSongsSearch() {
     let songs = await fetch(`https://shazam.p.rapidapi.com/search?term=${searchTerm}&locale=en-US&offset=0&limit=8`, {
         "method": "GET",
         "headers": {
-            "x-rapidapi-key": "c204cc8052msh96dac8f09970455p1cab12jsneb13a550fb65",
+            "x-rapidapi-key": "xxxxxxxxxxxxxxxxx",
             "x-rapidapi-host": "shazam.p.rapidapi.com"
         }
     });
