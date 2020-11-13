@@ -1,3 +1,5 @@
+
+// Array which contains playlists added by user
 let playlistsArr = [
     {
         name: 'Playlist1', song:
@@ -18,6 +20,7 @@ let playlistsArr = [
     }
 ];
 
+// Adding the required playlists to playlists page
 function reloadPlaylists() {
 
     let playlistPage = document.getElementById('songcolleft');
@@ -35,6 +38,7 @@ function reloadPlaylists() {
     });
 }
 
+// displaying songs of requested playlist in playlists page
 function displayReqSongsList(plyListIndex) {
 
     let colright = document.getElementById('songcolright');
@@ -59,6 +63,7 @@ function displayReqSongsList(plyListIndex) {
 
 }
 
+// playing the selected songs of playlist
 async function playPlayListSong(listIndex, songIndex) {
     let audio = document.getElementById('audioPlayer');
     let audioSrc = document.getElementById('audioPlayersrc');
@@ -70,6 +75,7 @@ async function playPlayListSong(listIndex, songIndex) {
     audio.play();
 }
 
+//Getting album songs api from shazam music app
 async function getSongsapi() {
     let songs = await fetch("https://shazam.p.rapidapi.com/songs/list-artist-top-tracks?id=xxxxxxxx&locale=en-US", {
         "method": "GET",
@@ -85,6 +91,7 @@ async function getSongsapi() {
 
 }
 
+// displaying the api songs on the home page
 function displaySongs(tracks, count, isSongsApi) {
     let container = document.getElementById('songsContainer');
     container.innerHTML = "";
@@ -148,12 +155,14 @@ function displaySongs(tracks, count, isSongsApi) {
     }
 }
 
+// getting song title and song url
 function getSongDetails(songTitle, songURL) {
     document.getElementById('songtitle').value = songTitle;
     document.getElementById('songurl').value = songURL;
 
 }
 
+// fetching song from song search
 async function getSongsSearch() {
     let searchTerm = document.getElementById('searchSong').value;
     console.log(searchTerm);
@@ -171,6 +180,7 @@ async function getSongsSearch() {
     displaySongs(tracks, count, false);
 }
 
+// playing the song on clicking play button
 async function playSong(songUrl, songtitle) {
     let audio = document.getElementById('player');
     let audioSrc = document.getElementById('sourceAudio');
@@ -182,6 +192,7 @@ async function playSong(songUrl, songtitle) {
 
 }
 
+// implements stopping song
 async function stopSong(songUrl) {
     let audio = document.getElementById('player');
     let audioSrc = document.getElementById('sourceAudio');
@@ -191,6 +202,7 @@ async function stopSong(songUrl) {
     }
 }
 
+//adds songs to playlist array
 function addSongToPlaylist() {
     let listEle = document.getElementById('newplaylistName');
     if (listEle.value.length == 0 || listEle.value == "") {
@@ -231,11 +243,13 @@ function addSongToPlaylist() {
     reloadPlaylists();
 }
 
+//on adding songs to same playlist songs to be pushed to playlist array
 function addSongToExistingPlaylist(sname, surl, playlistName) {
     let reqPlaylist = playlistsArr.find((list) => list.name == playlistName);
     reqPlaylist.song.push({ songName: sname, songurl: surl });
 }
 
+//adding playlists name to list of existing playlists
 function addPlaylistsName() {
     let listEle = document.getElementById('playlistNames');
     let listName = playlistsArr[playlistsArr.length - 1].name;
@@ -245,6 +259,7 @@ function addPlaylistsName() {
     listEle.appendChild(option);
 }
 
+//displays playlists tab
 function displayAllPlaylists() {
     reloadPlaylists();
     document.getElementById('playermusic').style.display = 'none';
@@ -255,6 +270,7 @@ function displayAllPlaylists() {
 
 }
 
+//displays home page
 function displayHome() {
     document.getElementById('playermusic').style.display = 'block';
     document.getElementById('songsContainer').style.display = 'block'
@@ -270,6 +286,7 @@ function createEleWithClass(ele, className) {
     return k;
 }
 
+// on loading the window, album is displayed
 window.onload = getSongsapi;
 
 

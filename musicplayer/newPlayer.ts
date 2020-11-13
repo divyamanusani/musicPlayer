@@ -33,6 +33,7 @@ class MusicAlbum {
 		this.getSongsApi();
 	}
 
+	// fetching music songs api 
 	getSongsApi = async (): Promise<any>  => {
 		let songs = await fetch("https://shazam.p.rapidapi.com/songs/list-artist-top-tracks?id=xxxxxxxx&locale=en-US", {
 			"method": "GET",
@@ -47,6 +48,7 @@ class MusicAlbum {
 		this.displaySongs(tracks, count, true);
 	}
 
+	// displaying the api songs on the home page
 	displaySongs(tracks, count: number, isSongsApi: boolean) {
 		let container = document.getElementById('songsContainer');
 		container.innerHTML = "";
@@ -110,6 +112,7 @@ class MusicAlbum {
 		}
 	}
 
+	// Adding the required playlists to playlists page
 	reloadPlaylists() {
 
 		let playlistPage = document.getElementById('songcolleft');
@@ -127,6 +130,7 @@ class MusicAlbum {
 		});
 	}
 
+	// displaying songs of requested playlist in playlists page
 	displayReqSongsList(plyListIndex: number) {
 
 		let colright = document.getElementById('songcolright');
@@ -150,6 +154,8 @@ class MusicAlbum {
 
 	}
 
+
+// playing the selected songs of playlist
 	playPlayListSong = async (listIndex: number, songIndex: number): Promise<any> => {
 		let audio = <HTMLAudioElement>document.getElementById('audioPlayer');
 		let audioSrc = <HTMLSourceElement>document.getElementById('audioPlayersrc');
@@ -162,6 +168,7 @@ class MusicAlbum {
 		audio.volume = 0.6;
 	}
 
+	// getting song title and song url
 	getSongDetails(songTitle: string, songURL: string) {
 		(<HTMLInputElement>document.getElementById('songtitle')).value = songTitle;
 		(<HTMLInputElement>document.getElementById('songurl')).value = songURL;
@@ -169,6 +176,7 @@ class MusicAlbum {
 	}
 
 
+// fetching song from song search
 	getSongsSearch = async () : Promise<any>=> {
 		let searchTerm = (<HTMLInputElement>document.getElementById('searchSong')).value;
 		console.log(searchTerm);
@@ -186,6 +194,7 @@ class MusicAlbum {
 		this.displaySongs(tracks, count, false);
 	}
 
+	// playing the song on clicking play button
 	playSong = async (songUrl: string, songtitle: string): Promise<any> => {
 		let audio = <HTMLAudioElement>document.getElementById('player');
 		let audioSrc = <HTMLSourceElement>document.getElementById('sourceAudio');
@@ -197,6 +206,7 @@ class MusicAlbum {
 
 	}
 
+	// implements stopping song
 	stopSong = async (songUrl: string): Promise<any> => {
 		let audio = <HTMLAudioElement>document.getElementById('player');
 		let audioSrc = <HTMLSourceElement>document.getElementById('sourceAudio');
@@ -206,6 +216,7 @@ class MusicAlbum {
 		}
 	}
 
+	//adds songs to playlist array
 	addSongToPlaylist() {
 		let listEle = <HTMLInputElement>document.getElementById('newplaylistName');
 		if (listEle.value.length == 0 || listEle.value == " ") {
@@ -246,6 +257,7 @@ class MusicAlbum {
 		this.reloadPlaylists();
 	}
 
+	//on adding songs to same playlist songs to be pushed to playlist array
 	addSongToExistingPlaylist(sname, surl, playlistName) {
 		let i = 0;
 		for (i = 0; i < this.playlistsArr.length; i++) {
@@ -255,6 +267,8 @@ class MusicAlbum {
 		}
 	}
 
+
+//adding playlists name to list of existing playlists
 	addPlaylistsName() {
 		let listEle = <HTMLSelectElement>document.getElementById('playlistNames');
 		let listName = this.playlistsArr[this.playlistsArr.length - 1].name;
@@ -264,6 +278,7 @@ class MusicAlbum {
 		listEle.appendChild(option);
 	}
 
+	//displays playlists tab
 	displayAllPlaylists() {
 		this.reloadPlaylists();
 		(<HTMLDivElement>document.getElementById('playermusic')).style.display = 'none';
@@ -274,6 +289,8 @@ class MusicAlbum {
 
 	}
 
+
+//displays home page
 	displayHome() {
 		(<HTMLDivElement>document.getElementById('playermusic')).style.display = 'block';
 		(<HTMLDivElement>document.getElementById('songsContainer')).style.display = 'block';
