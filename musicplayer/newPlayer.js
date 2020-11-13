@@ -38,6 +38,7 @@ var MusicAlbum = /** @class */ (function () {
     function MusicAlbum() {
         var _this = this;
         this.playlistsArr = [];
+        // fetching music songs api 
         this.getSongsApi = function () { return __awaiter(_this, void 0, void 0, function () {
             var songs, songsJson, tracks, count;
             return __generator(this, function (_a) {
@@ -61,6 +62,7 @@ var MusicAlbum = /** @class */ (function () {
                 }
             });
         }); };
+        // playing the selected songs of playlist
         this.playPlayListSong = function (listIndex, songIndex) { return __awaiter(_this, void 0, void 0, function () {
             var audio, audioSrc, songTitleName;
             return __generator(this, function (_a) {
@@ -80,6 +82,7 @@ var MusicAlbum = /** @class */ (function () {
                 }
             });
         }); };
+        // fetching song from song search
         this.getSongsSearch = function () { return __awaiter(_this, void 0, void 0, function () {
             var searchTerm, songs, songsJson, tracks, count;
             return __generator(this, function (_a) {
@@ -107,6 +110,7 @@ var MusicAlbum = /** @class */ (function () {
                 }
             });
         }); };
+        // playing the song on clicking play button
         this.playSong = function (songUrl, songtitle) { return __awaiter(_this, void 0, void 0, function () {
             var audio, audioSrc;
             return __generator(this, function (_a) {
@@ -125,6 +129,7 @@ var MusicAlbum = /** @class */ (function () {
                 }
             });
         }); };
+        // implements stopping song
         this.stopSong = function (songUrl) { return __awaiter(_this, void 0, void 0, function () {
             var audio, audioSrc;
             return __generator(this, function (_a) {
@@ -160,6 +165,7 @@ var MusicAlbum = /** @class */ (function () {
         ];
         this.getSongsApi();
     }
+    // displaying the api songs on the home page
     MusicAlbum.prototype.displaySongs = function (tracks, count, isSongsApi) {
         var container = document.getElementById('songsContainer');
         container.innerHTML = "";
@@ -220,6 +226,7 @@ var MusicAlbum = /** @class */ (function () {
             container.appendChild(row);
         }
     };
+    // Adding the required playlists to playlists page
     MusicAlbum.prototype.reloadPlaylists = function () {
         var _this = this;
         var playlistPage = document.getElementById('songcolleft');
@@ -236,6 +243,7 @@ var MusicAlbum = /** @class */ (function () {
             playlistPage.append(card1);
         });
     };
+    // displaying songs of requested playlist in playlists page
     MusicAlbum.prototype.displayReqSongsList = function (plyListIndex) {
         var _this = this;
         var colright = document.getElementById('songcolright');
@@ -257,10 +265,12 @@ var MusicAlbum = /** @class */ (function () {
         });
         colright.append(ul);
     };
+    // getting song title and song url
     MusicAlbum.prototype.getSongDetails = function (songTitle, songURL) {
         document.getElementById('songtitle').value = songTitle;
         document.getElementById('songurl').value = songURL;
     };
+    //adds songs to playlist array
     MusicAlbum.prototype.addSongToPlaylist = function () {
         var listEle = document.getElementById('newplaylistName');
         if (listEle.value.length == 0 || listEle.value == " ") {
@@ -297,6 +307,7 @@ var MusicAlbum = /** @class */ (function () {
         }
         this.reloadPlaylists();
     };
+    //on adding songs to same playlist songs to be pushed to playlist array
     MusicAlbum.prototype.addSongToExistingPlaylist = function (sname, surl, playlistName) {
         var i = 0;
         for (i = 0; i < this.playlistsArr.length; i++) {
@@ -305,6 +316,7 @@ var MusicAlbum = /** @class */ (function () {
             }
         }
     };
+    //adding playlists name to list of existing playlists
     MusicAlbum.prototype.addPlaylistsName = function () {
         var listEle = document.getElementById('playlistNames');
         var listName = this.playlistsArr[this.playlistsArr.length - 1].name;
@@ -313,6 +325,7 @@ var MusicAlbum = /** @class */ (function () {
         option.innerHTML = listName;
         listEle.appendChild(option);
     };
+    //displays playlists tab
     MusicAlbum.prototype.displayAllPlaylists = function () {
         this.reloadPlaylists();
         document.getElementById('playermusic').style.display = 'none';
@@ -321,6 +334,7 @@ var MusicAlbum = /** @class */ (function () {
         document.getElementById('searchSong').disabled = true;
         document.getElementById('searchBtn').disabled = true;
     };
+    //displays home page
     MusicAlbum.prototype.displayHome = function () {
         document.getElementById('playermusic').style.display = 'block';
         document.getElementById('songsContainer').style.display = 'block';
