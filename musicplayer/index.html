@@ -14,7 +14,7 @@
         <div class="container-fluid">
             <a href="#" class="navbar-brand mr-3">
                 <div class="navbar-nav">
-                    <form class="form-inline my-2 my-lg-0" onsubmit="getSongsSearch();return false;">
+                    <form class="form-inline my-2 my-lg-0" onsubmit="media.getSongsSearch();return false;">
                         <span>
                             <button class="btn btn-success my-2 my-sm-0" id="searchBtn" type="submit">Search</button>
                             <input class="form-control mr-sm-2" id="searchSong" type="search"
@@ -30,9 +30,9 @@
             <div class="navbar-collapse collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
                     <a href="#" class="nav-item nav-link"><button class="btn btn-success"
-                            onclick="displayAllPlaylists()">Playlists</button></a>
+                            onclick="media.displayAllPlaylists()">Playlists</button></a>
                     <a href="#" class="nav-item nav-link"><button class="btn btn-success"
-                            onclick="displayHome()">Home</button></a>
+                            onclick="media.displayHome()">Home</button></a>
 
                 </div>
 
@@ -96,7 +96,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="addSongToPlaylist()">Add
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="media.addSongToPlaylist()">Add
                         Song to Playlist</button>
                 </div>
             </div>
